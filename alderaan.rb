@@ -2,18 +2,12 @@ require 'httparty'
 require 'json'
 require 'ap'
 require_relative 'film'
-# require_relative 'character'
+require_relative 'character'
 
 class Main
-  # def get_opening_crawl(episode_identifier)
-  #   response = HTTParty.get("http://swapi.co/api/films")
-  #   @questions = JSON.parse(response.body)
-  #   answer = @questions["results"].find { |result|
-  #     result["episode_id"] = episode_identifier }
-  #   ap answer["opening_crawl"]
-  # end
   def initialize
     @film = Film.new
+    @character = Character.new
   end
 
   def ask_questions
@@ -29,22 +23,73 @@ class Main
     return choice
   end
 
+  def continue_questions
+    puts "Type yes if you want to know more or no if you want to choose another title."
+    input = gets.chomp
+    return input
+  end
+
   def menu
-    choice = ask_questions
-    if choice == "1"
-      ap @film.get_opening_crawl(4)  
-    elsif choice == "2"
-      get_opening_crawl(5)
-    elsif choice == "3"
-      get_opening_crawl(6)
-    elsif choice == "4"
-      get_opening_crawl(1)
-    elsif choice == "5"
-      get_opening_crawl(2)
-    elsif choice == "6"
-      get_opening_crawl(3)
-    elsif choice == "7"
-      get_opening_crawl(7)
+    choice = ()
+    while choice != ""
+      choice = ask_questions
+      if choice == "1"
+        puts @film.get_opening_crawl(4)
+        input = continue_questions
+        if input == "yes"
+          puts @character.get_characters(4)
+        else
+          menu
+        end
+      elsif choice == "2"
+        puts @film.get_opening_crawl(5)
+        input = continue_questions
+        if input == "yes"
+          puts @character.get_characters(5)
+        else
+          menu
+        end
+      elsif choice == "3"
+        puts @film.get_opening_crawl(6)
+        input = continue_questions
+        if input == "yes"
+          puts @character.get_characters(6)
+        else
+          menu
+        end
+      elsif choice == "4"
+        puts @film.get_opening_crawl(1)
+        input = continue_questions
+        if input == "yes"
+          puts @character.get_characters(1)
+        else
+          menu
+        end
+      elsif choice == "5"
+        puts @film.get_opening_crawl(2)
+        input = continue_questions
+        if input == "yes"
+          puts @character.get_characters(2)
+        else
+          menu
+        end
+      elsif choice == "6"
+        puts @film.get_opening_crawl(3)
+        input = continue_questions
+        if input == "yes"
+          puts @character.get_characters(3)
+        else
+          menu
+        end
+      elsif choice == "7"
+        puts @film.get_opening_crawl(7)
+        input = continue_questions
+        if input == "yes"
+          puts @character.get_characters(7)
+        else
+          menu
+        end
+      end
     end
   end
 end
