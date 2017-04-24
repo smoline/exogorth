@@ -12,7 +12,6 @@ class Film
   end
 end
 
-
 # @questions["results"].each_with_index { |film, index| puts index + 1, film["title"] }
 
 # class StarWarsMovies
